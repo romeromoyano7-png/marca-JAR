@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#111016">
+  <meta name="description" content="JAR FUTURE — Investigar. Resolver. Evolucionar. Perfil profesional de tecnología, sistemas e inteligencia artificial.">
+  <title>JAR FUTURE | Investigar. Resolver. Evolucionar.</title>
+  <style>
+    :root {
+      --bg: #111016;
+      --panel: #191620;
+      --panel-2: #211a2b;
+      --text: #f6f2fc;
+      --muted: #b7afc4;
+      --purple: #b69aff;
+      --purple-2: #8d63d9;
+      --line: rgba(205, 183, 255, .18);
+      --max: 1120px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0; background:
+        radial-gradient(ellipse at 80% 0%, rgba(141,99,217,.15), transparent 35%),
+        radial-gradient(ellipse at 0% 45%, rgba(95,60,140,.10), transparent 30%),
+        var(--bg);
+      color: var(--text); font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.6;
+    }
+    a { color: inherit; text-decoration: none; }
+    button, a { -webkit-tap-highlight-color: transparent; }
+    .wrap { width: min(var(--max), calc(100% - 40px)); margin-inline: auto; }
+    .topbar { position: sticky; top: 0; z-index: 20; backdrop-filter: blur(18px); background: rgba(17,16,22,.82); border-bottom: 1px solid var(--line); }
+    nav { min-height: 76px; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+    .brand { display: flex; align-items: center; gap: 12px; font-weight: 850; letter-spacing: .04em; }
+    .brand-mark { width: 42px; height: 42px; display: grid; place-items: center; border: 1px solid var(--purple-2); border-radius: 12px; color: var(--purple); background: linear-gradient(145deg, #292035, #17131f); font-size: 14px; letter-spacing: -.04em; }
+    .brand small { display: block; color: var(--muted); font-size: 10px; letter-spacing: .18em; font-weight: 650; margin-top: -4px; }
+    .navlinks { display: flex; align-items: center; gap: 26px; color: var(--muted); font-size: 14px; }
+    .navlinks a:hover, .navlinks a:focus-visible { color: var(--purple); }
+    .nav-cta { border: 1px solid var(--line); border-radius: 999px; padding: 10px 16px; color: var(--text) !important; }
+    .menu-btn { display: none; color: var(--text); border: 1px solid var(--line); background: var(--panel); border-radius: 10px; padding: 9px 12px; font-size: 20px; }
+    .hero { padding: 100px 0 86px; min-height: 650px; display: grid; align-items: center; }
+    .hero-grid { display: grid; grid-template-columns: 1.2fr .8fr; align-items: center; gap: 55px; }
+    .eyebrow { display: inline-flex; align-items: center; gap: 9px; color: var(--purple); text-transform: uppercase; font-size: 12px; letter-spacing: .18em; font-weight: 750; }
+    .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--purple); box-shadow: 0 0 18px var(--purple); }
+    h1 { font-size: clamp(46px, 7vw, 82px); line-height: .98; letter-spacing: -.065em; margin: 22px 0; }
+    .gradient { background: linear-gradient(100deg, #fff 10%, #c8b0ff 55%, #8f6bd4); color: transparent; -webkit-background-clip: text; background-clip: text; }
+    .hero p { max-width: 610px; color: var(--muted); font-size: clamp(16px, 2vw, 19px); }
+    .hero p strong { color: var(--text); font-weight: 650; }
+    .actions { display: flex; flex-wrap: wrap; gap: 13px; margin-top: 30px; }
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; padding: 13px 19px; border-radius: 12px; font-weight: 750; font-size: 14px; border: 1px solid var(--line); transition: transform .2s, background .2s; }
+    .btn:hover { transform: translateY(-2px); }
+    .btn-primary { color: #17111f; background: var(--purple); border-color: var(--purple); }
+    .btn-secondary { background: rgba(255,255,255,.025); }
+    .hero-note { display: flex; gap: 18px; flex-wrap: wrap; margin-top: 35px; color: var(--muted); font-size: 12px; }
+    .hero-note span { display: flex; align-items: center; gap: 7px; }
+    .hero-note b { color: var(--purple); }
+    .visual { position: relative; min-height: 390px; display: grid; place-items: center; }
+    .orb { position: absolute; width: min(330px, 75vw); aspect-ratio: 1; border-radius: 50%; border: 1px solid rgba(182,154,255,.24); background: radial-gradient(circle at 35% 30%, rgba(182,154,255,.17), rgba(28,22,37,.35) 55%, transparent 70%); box-shadow: 0 0 100px rgba(141,99,217,.12), inset 0 0 50px rgba(182,154,255,.05); }
+    .orb:before, .orb:after { content: ""; position: absolute; inset: 12%; border: 1px solid rgba(182,154,255,.18); border-radius: 50%; transform: rotateX(65deg) rotateZ(25deg); }
+    .orb:after { inset: 2%; transform: rotateX(65deg) rotateZ(-32deg); border-color: rgba(182,154,255,.13); }
+    .monogram { position: relative; z-index: 1; width: 190px; height: 190px; border: 1px solid rgba(182,154,255,.48); border-radius: 34px; background: linear-gradient(145deg, rgba(39,30,53,.96), rgba(18,16,23,.96)); display: grid; place-items: center; transform: rotate(-5deg); box-shadow: 0 25px 80px rgba(0,0,0,.35); }
+    .monogram strong { font-size: 62px; letter-spacing: -.1em; padding-right: 8px; background: linear-gradient(145deg, #fff, #b69aff 70%); color: transparent; -webkit-background-clip: text; background-clip: text; }
+    .monogram small { position: absolute; bottom: 22px; color: var(--muted); font-size: 9px; letter-spacing: .3em; transform: rotate(5deg); }
+    .float-card { position: absolute; z-index: 2; background: rgba(25,22,32,.9); border: 1px solid var(--line); border-radius: 14px; padding: 12px 15px; backdrop-filter: blur(10px); box-shadow: 0 15px 45px rgba(0,0,0,.18); }
+    .float-card strong { display: block; font-size: 12px; }
+    .float-card span { color: var(--muted); font-size: 11px; }
+    .float-a { top: 28px; right: 0; }
+    .float-b { bottom: 32px; left: 0; }
+    section { padding: 82px 0; }
+    .section-head { max-width: 700px; margin-bottom: 35px; }
+    .section-kicker { color: var(--purple); text-transform: uppercase; letter-spacing: .18em; font-size: 11px; font-weight: 800; }
+    h2 { font-size: clamp(30px, 4vw, 46px); letter-spacing: -.045em; line-height: 1.1; margin: 12px 0 14px; }
+    .section-head p, .muted { color: var(--muted); }
+    .about-grid { display: grid; grid-template-columns: .9fr 1.1fr; gap: 24px; }
+    .panel { border: 1px solid var(--line); border-radius: 22px; padding: 27px; background: linear-gradient(145deg, rgba(31,26,40,.9), rgba(22,19,28,.86)); }
+    .panel h3 { margin: 0 0 12px; font-size: 19px; }
+    .panel p { margin: 0; color: var(--muted); }
+    .value-list { display: grid; gap: 14px; margin-top: 22px; }
+    .value { display: flex; gap: 13px; align-items: flex-start; }
+    .icon-box { flex: 0 0 39px; width: 39px; height: 39px; border: 1px solid var(--line); border-radius: 12px; display: grid; place-items: center; color: var(--purple); background: rgba(182,154,255,.06); font-size: 17px; }
+    .value strong { display: block; font-size: 14px; }
+    .value span { display: block; color: var(--muted); font-size: 13px; margin-top: 2px; }
+    .skill-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; }
+    .skill-card { padding: 23px; border: 1px solid var(--line); border-radius: 18px; background: rgba(255,255,255,.018); transition: border-color .2s, transform .2s; }
+    .skill-card:hover { border-color: rgba(182,154,255,.55); transform: translateY(-3px); }
+    .skill-card .symbol { font-size: 24px; color: var(--purple); }
+    .skill-card h3 { font-size: 16px; margin: 13px 0 7px; }
+    .skill-card p { color: var(--muted); font-size: 13px; margin: 0; }
+    .project-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; }
+    .project { border: 1px solid var(--line); border-radius: 18px; overflow: hidden; background: var(--panel); }
+    .project-top { height: 145px; padding: 20px; display: flex; align-items: center; justify-content: center; background: radial-gradient(circle at 50% 40%, rgba(141,99,217,.25), transparent 65%), #191620; border-bottom: 1px solid var(--line); }
+    .project-top span { width: 70px; height: 70px; border: 1px solid rgba(182,154,255,.4); border-radius: 20px; display: grid; place-items: center; color: var(--purple); font-size: 28px; }
+    .project-body { padding: 21px; }
+    .tag { display: inline-block; color: var(--purple); border: 1px solid rgba(182,154,255,.28); background: rgba(182,154,255,.06); border-radius: 999px; padding: 4px 9px; font-size: 10px; font-weight: 750; letter-spacing: .06em; text-transform: uppercase; }
+    .project h3 { margin: 13px 0 7px; font-size: 17px; }
+    .project p { color: var(--muted); font-size: 13px; margin: 0; }
+    .project-note { margin-top: 18px; padding: 13px 15px; border-left: 2px solid var(--purple); color: var(--muted); font-size: 12px; background: rgba(182,154,255,.04); }
+    .approach { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; counter-reset: step; }
+    .step { padding: 23px; border-radius: 18px; border: 1px solid var(--line); background: rgba(255,255,255,.018); }
+    .step .num { color: var(--purple); font-size: 12px; letter-spacing: .16em; font-weight: 800; }
+    .step h3 { margin: 12px 0 7px; font-size: 17px; }
+    .step p { margin: 0; color: var(--muted); font-size: 13px; }
+    .contact-card { border: 1px solid rgba(182,154,255,.32); border-radius: 24px; padding: clamp(25px, 5vw, 48px); background: radial-gradient(ellipse at 90% 10%, rgba(141,99,217,.16), transparent 45%), var(--panel); display: flex; justify-content: space-between; align-items: center; gap: 30px; }
+    .contact-card h2 { margin-top: 0; }
+    .contact-card p { color: var(--muted); max-width: 600px; margin-bottom: 0; }
+    footer { padding: 28px 0; border-top: 1px solid var(--line); color: var(--muted); font-size: 12px; }
+    .footer-row { display: flex; justify-content: space-between; gap: 18px; flex-wrap: wrap; }
+    .footer-brand { color: var(--text); font-weight: 800; letter-spacing: .08em; }
+    .reveal { opacity: 0; transform: translateY(14px); transition: opacity .65s ease, transform .65s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    :focus-visible { outline: 2px solid var(--purple); outline-offset: 4px; }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *:before, *:after { transition: none !important; animation: none !important; } .reveal { opacity: 1; transform: none; } }
+
+    .timeline { display:grid; gap:17px; }
+    .timeline-item { position:relative; padding-left:25px; border-left:1px solid rgba(182,154,255,.3); }
+    .timeline-item:before { content:""; position:absolute; left:-5px; top:7px; width:9px; height:9px; border-radius:50%; background:var(--purple); box-shadow:0 0 14px rgba(182,154,255,.45); }
+    .timeline-item h4 { margin:0 0 4px; font-size:15px; }
+    .timeline-item .meta { color:var(--purple); font-size:12px; font-weight:700; margin-bottom:7px; }
+    .timeline-item p { color:var(--muted); font-size:13px; margin:0; }
+    .resume-grid { display:grid; grid-template-columns:.85fr 1.15fr; gap:22px; }
+    .resume-list { display:flex; flex-wrap:wrap; gap:8px; margin-top:17px; }
+    .resume-chip { display:inline-flex; padding:7px 10px; border-radius:999px; border:1px solid var(--line); color:#ded5ef; background:rgba(182,154,255,.05); font-size:12px; }
+    .resume-facts { display:grid; grid-template-columns:repeat(2,1fr); gap:12px; margin-top:18px; }
+    .resume-fact { padding:15px; border:1px solid var(--line); border-radius:14px; background:rgba(255,255,255,.02); }
+    .resume-fact strong { display:block; font-size:13px; }
+    .resume-fact span { color:var(--muted); font-size:12px; }
+    .contact-links { display:flex; flex-wrap:wrap; gap:10px; margin-top:18px; }
+    .contact-links a { border:1px solid var(--line); border-radius:10px; padding:9px 12px; font-size:13px; color:var(--muted); }
+    .contact-links a:hover { border-color:var(--purple); color:var(--text); }
+
+
+    .brand-explain-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:15px; }
+    .brand-explain-card { padding:23px; border:1px solid var(--line); border-radius:18px; background:rgba(255,255,255,.018); }
+    .brand-explain-card h3 { margin:12px 0 7px; font-size:16px; }
+    .brand-explain-card p { color:var(--muted); font-size:13px; margin:0; }
+    .brand-symbol-large { width:58px; height:58px; display:grid; place-items:center; border:1px solid rgba(182,154,255,.45); border-radius:16px; background:linear-gradient(145deg,#292035,#17131f); color:var(--purple); font-weight:900; letter-spacing:-.08em; font-size:17px; }
+    .brand-colors { display:flex; gap:8px; margin:13px 0; }
+    .brand-colors span { display:block; width:34px; height:34px; border-radius:10px; border:1px solid rgba(255,255,255,.15); }
+    .brand-manifesto { margin-top:18px; padding:22px; border-radius:18px; border:1px solid rgba(182,154,255,.25); background:linear-gradient(120deg,rgba(141,99,217,.12),rgba(255,255,255,.015)); }
+
+    @media (max-width: 820px) {
+      .hero { padding: 72px 0 55px; min-height: auto; }
+      .hero-grid, .about-grid, .resume-grid, .brand-explain-grid { grid-template-columns: 1fr; }
+      .hero-grid { gap: 20px; }
+      .visual { min-height: 330px; }
+      .skill-grid, .project-grid { grid-template-columns: repeat(2, 1fr); }
+      .approach { grid-template-columns: 1fr; }
+      .contact-card { align-items: flex-start; flex-direction: column; }
+      .navlinks { gap: 15px; }
+    }
+    @media (max-width: 620px) {
+      .wrap { width: min(var(--max), calc(100% - 30px)); }
+      nav { min-height: 68px; flex-wrap: wrap; }
+      .menu-btn { display: inline-block; }
+      .navlinks { display: none; flex-direction: column; align-items: stretch; width: 100%; padding: 0 0 18px; gap: 0; }
+      .navlinks.open { display: flex; }
+      .navlinks a { padding: 12px 4px; border-top: 1px solid var(--line); }
+      .nav-cta { border: 0; padding-left: 4px; }
+      .hero { padding-top: 58px; }
+      h1 { font-size: clamp(43px, 14vw, 65px); }
+      .visual { min-height: 300px; }
+      .monogram { width: 155px; height: 155px; border-radius: 27px; }
+      .monogram strong { font-size: 50px; }
+      .float-a { right: 0; top: 10px; }
+      .float-b { left: 0; bottom: 8px; }
+      section { padding: 60px 0; }
+      .skill-grid, .project-grid { grid-template-columns: 1fr; }
+      .panel { padding: 22px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <nav class="wrap" aria-label="Navegación principal">
+      <a class="brand" href="#inicio" aria-label="JAR FUTURE, inicio">
+        <span class="brand-mark">JAR</span>
+        <span>JAR FUTURE<small>TECH · AI · SYSTEMS</small></span>
+      </a>
+      <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="navlinks" aria-label="Abrir menú">☰</button>
+      <div class="navlinks" id="navlinks">
+        <a href="#sobre-mi">Sobre mí</a>
+        <a href="#marca">La marca</a>
+        <a href="#areas">Áreas de interés</a>
+        <a href="#curriculum">Currículum</a>
+        <a href="#proyectos">Proyectos</a>
+        <a href="#metodo">Mi enfoque</a>
+        <a class="nav-cta" href="#contacto">Contacto ↗</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="inicio">
+      <div class="wrap hero-grid">
+        <div>
+          <div class="eyebrow"><span class="dot"></span> Tecnología con visión de futuro</div>
+          <h1>Investigar.<br><span class="gradient">Resolver.</span><br>Evolucionar.</h1>
+          <p>Soy estudiante de <strong>Administración de Sistemas Informáticos en Red (ASIR)</strong>, con interés en la inteligencia artificial, los sistemas y las nuevas tecnologías. Me motiva investigar cómo funcionan las herramientas y descubrir cómo hacerlas más efectivas.</p>
+          <div class="actions">
+            <a class="btn btn-primary" href="#areas">Explorar mi perfil <span aria-hidden="true">↘</span></a>
+            <a class="btn btn-secondary" href="#proyectos">Ver áreas de proyecto <span aria-hidden="true">↗</span></a>
+          </div>
+          <div class="hero-note">
+            <span><b>✳</b> Curiosidad</span>
+            <span><b>⌘</b> Resolución de problemas</span>
+            <span><b>↗</b> Aprendizaje continuo</span>
+          </div>
+        </div>
+        <div class="visual" aria-label="Monograma JAR con estética tecnológica">
+          <div class="orb"></div>
+          <div class="monogram"><strong>JAR</strong><small>FUTURE / 01</small></div>
+          <div class="float-card float-a"><strong>Explorar lo nuevo</strong><span>IA · Innovación · Futuro</span></div>
+          <div class="float-card float-b"><strong>Resolver con método</strong><span>Analizar → Probar → Mejorar</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="sobre-mi">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <div class="section-kicker">01 / Sobre mí</div>
+          <h2>Curiosidad para descubrir.<br><span class="gradient">Método para mejorar.</span></h2>
+          <p>Mi marca personal combina una base informática con una mentalidad investigadora y el deseo de contribuir a mejorar las soluciones tecnológicas.</p>
+        </div>
+        <div class="about-grid">
+          <article class="panel reveal">
+            <h3>Mi objetivo</h3>
+            <p>Seguir desarrollando mis conocimientos en sistemas y redes, explorar herramientas de inteligencia artificial y aprender a evaluar sus posibilidades, limitaciones y aplicaciones prácticas.</p>
+            <div class="value-list">
+              <div class="value"><div class="icon-box">◎</div><div><strong>Honestidad</strong><span>Comunicar con transparencia lo que sé y lo que sigo aprendiendo.</span></div></div>
+              <div class="value"><div class="icon-box">⌕</div><div><strong>Curiosidad</strong><span>Investigar, experimentar y descubrir nuevas posibilidades.</span></div></div>
+              <div class="value"><div class="icon-box">↗</div><div><strong>Resolución</strong><span>Buscar soluciones a problemas técnicos con paciencia y método.</span></div></div>
+            </div>
+          </article>
+          <article class="panel reveal">
+            <h3>Mi propuesta de valor</h3>
+            <p>Como estudiante de ASIR, aporto responsabilidad, precisión e iniciativa para investigar por mi cuenta. Me interesa conectar los conocimientos de sistemas informáticos con las nuevas tecnologías, probar herramientas y encontrar oportunidades para mejorar soluciones existentes.</p>
+            <div class="value-list">
+              <div class="value"><div class="icon-box">01</div><div><strong>Responsable y fiable</strong><span>Me esfuerzo por cumplir mis tareas y reconocer los errores.</span></div></div>
+              <div class="value"><div class="icon-box">02</div><div><strong>Metódico y resolutivo</strong><span>Analizo los problemas y busco soluciones paso a paso.</span></div></div>
+              <div class="value"><div class="icon-box">03</div><div><strong>En evolución constante</strong><span>Aprender nuevas herramientas es parte de mi camino profesional.</span></div></div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="areas">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <div class="section-kicker">02 / Áreas de interés</div>
+          <h2>Una base técnica.<br><span class="gradient">Muchas posibilidades.</span></h2>
+          <p>Estas son las áreas que me interesan y en las que quiero seguir aprendiendo y desarrollándome.</p>
+        </div>
+        <div class="skill-grid">
+          <article class="skill-card reveal"><div class="symbol">⌘</div><h3>Inteligencia artificial</h3><p>Explorar herramientas de IA, probar sus capacidades y descubrir formas de mejorar su utilidad.</p></article>
+          <article class="skill-card reveal"><div class="symbol">▦</div><h3>Sistemas Linux</h3><p>Seguir desarrollando conocimientos de administración, configuración y resolución de incidencias.</p></article>
+          <article class="skill-card reveal"><div class="symbol">⌁</div><h3>Redes y servidores</h3><p>Configurar redes y servicios, comprender su funcionamiento y resolver problemas de conectividad.</p></article>
+          <article class="skill-card reveal"><div class="symbol">⚙</div><h3>Mantenimiento informático</h3><p>Montar, revisar y mantener equipos, con atención al diagnóstico y a las soluciones prácticas.</p></article>
+          <article class="skill-card reveal"><div class="symbol">◇</div><h3>Desarrollo web</h3><p>Crear y mejorar experiencias web como forma de comunicar ideas y construir proyectos.</p></article>
+          <article class="skill-card reveal"><div class="symbol">↗</div><h3>Nuevas tecnologías</h3><p>Investigar herramientas emergentes, aprender de forma autónoma y evaluar nuevas posibilidades.</p></article>
+        </div>
+      </div>
+    </section>
+
+
+
+    <section id="marca">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <div class="section-kicker">03 / La marca y su significado</div>
+          <h2>Una identidad con propósito.<br><span class="gradient">Una imagen con significado.</span></h2>
+          <p>JAR FUTURE no es solo un nombre y un logotipo: representa mi manera de aprender, investigar y afrontar los retos tecnológicos.</p>
+        </div>
+        <div class="brand-explain-grid">
+          <article class="brand-explain-card reveal">
+            <div class="brand-symbol-large">JAR</div>
+            <h3>¿Por qué JAR FUTURE?</h3>
+            <p><strong>JAR</strong> son las iniciales de mi nombre y apellidos, por lo que la marca mantiene una conexión directa conmigo. <strong>FUTURE</strong> representa mi interés por la inteligencia artificial, las nuevas tecnologías y la evolución constante. El nombre también permite que la identidad crezca conmigo, desde mi etapa como estudiante hasta futuros proyectos profesionales.</p>
+          </article>
+          <article class="brand-explain-card reveal">
+            <div class="brand-symbol-large">↗</div>
+            <h3>El significado del eslogan</h3>
+            <p><strong>«Investigar. Resolver. Evolucionar.»</strong> resume mi enfoque de trabajo. Investigar significa explorar y comprender cómo funciona una tecnología; resolver consiste en analizar problemas y buscar soluciones; evolucionar representa aprender de la experiencia y mejorar continuamente.</p>
+          </article>
+          <article class="brand-explain-card reveal">
+            <div class="brand-symbol-large">J·A·R</div>
+            <h3>¿Qué representa el logotipo?</h3>
+            <p>El concepto combina las iniciales <strong>JAR</strong> con formas geométricas limpias y un detalle inspirado en circuitos y conexiones digitales. Las iniciales hacen que el símbolo sea personal; las líneas tecnológicas lo relacionan con los sistemas, la innovación y la inteligencia artificial. Su diseño sencillo facilita reconocerlo en una web, un perfil profesional o una presentación.</p>
+          </article>
+          <article class="brand-explain-card reveal">
+            <div class="brand-symbol-large">◐</div>
+            <h3>¿Por qué negro y morado?</h3>
+            <div class="brand-colors"><span style="background:#17131F" title="Negro"></span><span style="background:#A981EF" title="Morado"></span><span style="background:#F6F2FC" title="Blanco de apoyo"></span></div>
+            <p>El <strong>negro</strong> aporta elegancia, carácter y una imagen profesional. El <strong>morado</strong> transmite creatividad, innovación y una asociación visual con la IA. Los tonos claros se utilizan como apoyo para mantener el contraste y facilitar la lectura.</p>
+          </article>
+        </div>
+        <div class="brand-manifesto reveal">
+          <div class="section-kicker">La idea que quiero transmitir</div>
+          <h3 style="margin:8px 0">Curiosidad para descubrir. Método para mejorar.</h3>
+          <p class="muted" style="margin:0">La marca busca proyectar una persona curiosa, resolutiva, responsable y metódica, que investiga nuevas tecnologías y quiere contribuir a mejorar las herramientas existentes. La identidad visual es moderna y minimalista para resultar llamativa sin perder claridad ni profesionalidad.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="curriculum">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <div class="section-kicker">04 / Currículum</div>
+          <h2>Mi formación y experiencia.<br><span class="gradient">La base de mi futuro.</span></h2>
+          <p>Un resumen de mi recorrido académico y de las prácticas realizadas, integrado en la identidad de JAR FUTURE.</p>
+        </div>
+        <div class="resume-grid">
+          <article class="panel reveal">
+            <h3>Formación académica</h3>
+            <div class="timeline">
+              <div class="timeline-item">
+                <h4>Administración de Sistemas Informáticos en Red (ASIR)</h4>
+                <div class="meta">IES Cánovas del Castillo · 2025–Actualidad</div>
+                <p>Formación orientada a sistemas informáticos, redes y servicios tecnológicos.</p>
+              </div>
+              <div class="timeline-item">
+                <h4>Bachillerato Tecnológico</h4>
+                <div class="meta">IES Nueva Scala · 2021–2023</div>
+                <p>Formación académica previa al ciclo de especialización informática.</p>
+              </div>
+            </div>
+            <div class="resume-facts">
+              <div class="resume-fact"><strong>Español</strong><span>Nativo</span></div>
+              <div class="resume-fact"><strong>Inglés</strong><span>B1 · Certificado Trinity</span></div>
+              <div class="resume-fact"><strong>Carné de conducir</strong><span>Tipo B</span></div>
+              <div class="resume-fact"><strong>Objetivo</strong><span>Seguir creciendo en tecnología</span></div>
+            </div>
+          </article>
+          <article class="panel reveal">
+            <h3>Experiencia práctica</h3>
+            <div class="timeline">
+              <div class="timeline-item">
+                <h4>Prácticas en EducaJunior</h4>
+                <div class="meta">Marzo–abril de 2026</div>
+                <p>Mantenimiento informático en colegios e institutos, mantenimiento de la página web de la empresa y colaboración en talleres electrónicos.</p>
+              </div>
+            </div>
+            <h3 style="margin-top:28px">Competencias técnicas de interés</h3>
+            <p>Áreas recogidas en mi currículum y en mis objetivos de desarrollo profesional.</p>
+            <div class="resume-list">
+              <span class="resume-chip">Gestión de Linux</span>
+              <span class="resume-chip">Bases de datos</span>
+              <span class="resume-chip">Desarrollo web</span>
+              <span class="resume-chip">Mantenimiento de equipos</span>
+              <span class="resume-chip">Redes y servidores</span>
+              <span class="resume-chip">Inteligencia artificial</span>
+            </div>
+          </article>
+        </div>
+        <div class="project-note reveal">Este resumen refleja la información de mi currículum actual. Las competencias describen áreas de conocimiento e interés; no implican un nivel de dominio que no esté especificado.</div>
+      </div>
+    </section>
+
+    <section id="proyectos">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <div class="section-kicker">05 / Laboratorio personal</div>
+          <h2>Aprender haciendo.</h2>
+          <p>Un espacio para documentar experimentos, prácticas y proyectos a medida que se desarrollen.</p>
+        </div>
+        <div class="project-grid">
+          <article class="project reveal">
+            <div class="project-top"><span>⌘</span></div>
+            <div class="project-body"><span class="tag">Idea por desarrollar</span><h3>Exploración de herramientas de IA</h3><p>Probar una herramienta, analizar sus resultados y documentar oportunidades de mejora, limitaciones y posibles usos.</p></div>
+          </article>
+          <article class="project reveal">
+            <div class="project-top"><span>⌁</span></div>
+            <div class="project-body"><span class="tag">Prácticas técnicas</span><h3>Sistemas, Linux y redes</h3><p>Recopilar prácticas de configuración y resolución de incidencias, explicando el problema, el proceso y el resultado.</p></div>
+          </article>
+          <article class="project reveal">
+            <div class="project-top"><span>◇</span></div>
+            <div class="project-body"><span class="tag">Idea por desarrollar</span><h3>Soluciones más eficientes</h3><p>Investigar una tarea repetitiva y explorar si puede simplificarse mediante automatización o herramientas tecnológicas.</p></div>
+          </article>
+        </div>
+        <div class="project-note reveal">Los proyectos de esta sección son ideas y líneas de trabajo, no proyectos terminados. Se actualizarán con resultados reales a medida que avance el aprendizaje.</div>
+      </div>
+    </section>
+
+    <section id="metodo">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <div class="section-kicker">06 / Mi enfoque</div>
+          <h2>Investigar. Resolver. Evolucionar.</h2>
+          <p>Una forma de trabajar que refleja los valores de JAR FUTURE.</p>
+        </div>
+        <div class="approach">
+          <article class="step reveal"><div class="num">PASO 01</div><h3>Investigar</h3><p>Comprender el problema, buscar información fiable y explorar las herramientas disponibles.</p></article>
+          <article class="step reveal"><div class="num">PASO 02</div><h3>Resolver</h3><p>Probar alternativas de forma ordenada, observar los resultados y aprender de los errores.</p></article>
+          <article class="step reveal"><div class="num">PASO 03</div><h3>Evolucionar</h3><p>Documentar lo aprendido, identificar mejoras y seguir desarrollando nuevas competencias.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="contacto">
+      <div class="wrap">
+        <div class="contact-card reveal">
+          <div>
+            <div class="section-kicker">07 / Próximo paso</div>
+            <h2>El futuro se construye aprendiendo.</h2>
+            <p>JAR FUTURE es el comienzo de un camino profesional centrado en la tecnología, la investigación y la mejora continua. Esta web crecerá conmigo y con cada nuevo proyecto.</p>
+            <div class="contact-links">
+              <a href="mailto:romeromoyano@gmail.com">✉ Enviar un correo</a>
+              <a href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer">↗ LinkedIn</a>
+            </div>
+          </div>
+          <a class="btn btn-primary" href="#inicio">Volver al inicio ↑</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap footer-row">
+      <span class="footer-brand">JAR FUTURE</span>
+      <span>Investigar. Resolver. Evolucionar.</span>
+      <span>Marca personal · Portfolio en evolución</span>
+    </div>
+  </footer>
+  <script>
+    const menuBtn = document.getElementById('menuBtn');
+    const navlinks = document.getElementById('navlinks');
+    menuBtn.addEventListener('click', () => {
+      const open = navlinks.classList.toggle('open');
+      menuBtn.setAttribute('aria-expanded', String(open));
+      menuBtn.textContent = open ? '×' : '☰';
+    });
+    navlinks.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
+      navlinks.classList.remove('open');
+      menuBtn.setAttribute('aria-expanded', 'false');
+      menuBtn.textContent = '☰';
+    }));
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
